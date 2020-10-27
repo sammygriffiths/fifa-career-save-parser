@@ -1,16 +1,35 @@
 {
   "name": "fifa-career-save-parser",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Parse PC career mode save files from FIFA 17 - 21",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "Sammy Griffiths"
+  },
+  "bugs": {
+    "url": "https://github.com/sammygriffiths/fifa-career-save-parser/issues"
+  },
   "license": "ISC",
   "dependencies": {
     "@node-lightning/bufio": "^0.11.0",
     "xml2js": "^0.4.23"
+  },
+  "homepage": "https://github.com/sammygriffiths/fifa-career-save-parser",
+  "keywords": [
+    "fifa",
+    "career",
+    "save",
+    "parse",
+    "decode",
+    "promise",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammygriffiths/fifa-career-save-parser.git"
   }
 }
