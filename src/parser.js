@@ -3,7 +3,7 @@ const helpers = require('./helpers');
 module.exports = (fs, xml2js, BufferReader) => {
     const databaseHeader = '\x44\x42\x00\x08\x00\x00\x00\x00';
     
-    const reader = {
+    const parser = {
         unpackDbs: async (binaryData) => {
             let offset = binaryData.indexOf(databaseHeader);
     
@@ -208,13 +208,13 @@ module.exports = (fs, xml2js, BufferReader) => {
         },
     
         parseSave: (binaryData, fifaVersion) => {
-            return read.unpackDbs(binaryData).then(dbs => {
+            return parser.unpackDbs(binaryData).then(dbs => {
                 return Promise.all(dbs.map(db => {
-                    return read.readDb(db, fifaVersion);
+                    return parser.readDb(db, fifaVersion);
                 }))
             });
         }
     }
 
-    return reader;
+    return parser;
 };
