@@ -1,0 +1,28 @@
+name: bump-npm-version
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  bump:
+    name: Bump version
+    if: "!contains( github.ref, 'release' )"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get version
+      id: get_version
+      run: echo "##[set-output name=version;]$(echo $GITHUB_HEAD_REF | sed -e "s/^release\///")"
+    - name: Update npm version
+      run: npm version ${{ steps.get_version.outputs.version }} --git-tag-version=false --allow-same-version
+    - name: Commit changes
+      uses: EndBug/add-and-commit@v5
+      with:
+        author_name: github-actions
+        author_email: github-actions@github.com
+        message: Bump version to ${{ steps.get_version.outputs.version }}
+        add: package.json package-lock.json
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
